@@ -49,14 +49,24 @@ def main(scr):
 def bar(scr, l, c, width, value):
     scr.addstr(l,c,'#'*int(width*value))
 
+def update(scr, objects):
+    scr.clear()
+    for obj in objects:
+        for i, s in obj.sprite:
+            scr.addstr(obj.y-height+i+1, obj.x-width/2, s)
+
 def game(stdscr):
     stdscr.clear()
     stdscr.refresh()
     height, width = stdscr.getmaxyx()
     menu_scr = curses.newwin(height, 10, 0, 0)
     game_scr = curses.newwin(height, width-10, 0, 10)
+    game_scr.nodelay(True)
     while True:
+        #update menu
         bar(menu_scr, 0, 0, 10, 1)
         menu_scr.refresh()
+        update(game_scr, [])
+
 
 curses.wrapper(main)
