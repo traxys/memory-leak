@@ -34,37 +34,50 @@ class Room:
     def tonari(self):
         tonari = []
 
-        if self.kita is not None:
-            tonari.append(self.kita)
+        if self.kita is None:
+            tonari.append(0)
         
-        if self.higashi is not None:
-            tonari.append(self.higashi)
+        if self.higashi is None:
+            tonari.append(1)
 
-        if self.minami is not None:
-            tonari.append(self.minami)
+        if self.minami is None:
+            tonari.append(2)
 
-        if self.nishi is not None:
-            tonari.append(self.nishi)
+        if self.nishi is None:
+            tonari.append(3)
 
         return tonari
 
+    def tonari_janai(self, x, y, r):
+        for d in range(0, r):   
+            pass
+
 class Level:
     def __init__(self):
-        nb_rooms = randint(4, 10)
+        self.nb_rooms = randint(4, 10)
 
         self.rooms = []
 
-        for i in range(nb_rooms):
-            while:
+    def generate(self):
+        for i in range(self.nb_rooms):
+            new_room = Room()
+            
+            while 42:
                 room = choice(self.rooms)
+                tonari = room.tonari()
 
-                new_room = Room()
+                if len(tonari) == 0:
+                    continue
+
+                direction = choice(tonari)
 
                 if direction == 0:
                     room.kita = new_room
                 elif direction == 1:
-                    pass
+                    room.higashi = new_room
                 elif direction == 2:
-                    pass
+                    room.minami = new_room
                 else:
-                    pass
+                    room.nishi = new_room
+
+                break 
