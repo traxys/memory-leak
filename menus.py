@@ -36,12 +36,13 @@ def main(scr):
     while True:
         choice = menu(scr, ['play','quit'])
         if choice == 0:
-            pass
-            #scr.clear()
-            #scr.addstr(0,0,"there is no game you fucker !")
-            #scr.refresh()
-            #k = scr.getkey()
-            #scr.clear()
+            scr.clear()
+            scr.addstr(0,0,"there is no game you fucker !")
+            scr.refresh()
+            scr.nodelay(False)
+            k = scr.getkey()
+            scr.nodelay(True)
+            scr.clear()
         else:
             break
 
