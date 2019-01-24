@@ -46,12 +46,17 @@ def main(scr):
         else:
             break
 
+def bar(scr, l, c, width, value):
+    scr.addstr(l,c,'#'*int(width*value))
 
 def game(stdscr):
+    stdscr.clear()
+    stdscr.refresh()
     height, width = stdscr.getmaxyx()
     menu_scr = curses.newwin(height, 10, 0, 0)
     game_scr = curses.newwin(height, width-10, 0, 10)
     while True:
-        break
+        bar(menu_scr, 0, 0, 10, 1)
+        menu_scr.refresh()
 
 curses.wrapper(main)
