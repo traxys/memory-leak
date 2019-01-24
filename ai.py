@@ -31,7 +31,7 @@ class Enemy:
             current = open_set.get()
 
             if current != goal:
-                for next in map.neighbors(current):
+                for next in map.tonari_janai_janai(current):
                     new_cost = closed_set[current] + map.cost(current, next)
                     if next not in closed_set or new_cost < closed_set[next]:
                         closed_set[next] = new_cost
@@ -41,8 +41,8 @@ class Enemy:
 
         return came_from, closed_set
 
-    def heuristic(self, goal, next):
-        pass
+    def heuristic(self, next, goal):
+        return abs(goal.x - self.x) + abs(goal.y - next.y)
 
     def pureya_ha_doko_ka(self):
         return abs(self.x - self.player.x) + abs(self.y - self.player.y)
@@ -50,3 +50,6 @@ class Enemy:
     def pureya_wo_naguru(self):
         if get_distance_from_player() <= self.range:
             self.player.health -= self.attack
+
+    def add_item(self, item):
+        self.items.append(item)
