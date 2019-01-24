@@ -4,5 +4,5 @@ class Room:
         self.width = 80
 
 class Level:
-    def __init(self):
-        pass
+    def __init__(self):
+        self.olala = Room()
