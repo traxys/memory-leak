@@ -1,5 +1,9 @@
+#!/usr/bin/env python3
+
+import ai
+
 def main():
-    pass
+    hey = Enemy("hey", 1, 0, 0)
 
 
 main()
