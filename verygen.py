@@ -1,11 +1,31 @@
 from random import randint, choice
+from enum import Enum
+
+class TileType(Enum):
+    EMPTY = 0
+    WALL = 1
+    GATE = 2
 
 class Tile:
     def __init__(self):
-        self.wall = False
+        self.type = TileType.EMPTY
+        self.next_room = None
+
+    def is_empty(self):
+        return self.type == TileType.EMPTY
 
     def is_a_wall(self):
-        return self.wall
+        return self.type == TileType.WALL
+
+    def is_a_gate(self):
+        return self.type == TileType.GATE
+
+    def set_next_room(self, next_room):
+        self.next_room = next_room
+        self.type = TileType.GATE
+
+    def get_next_room(self):
+        return self.next_room
 
 class Room:
     def __init__(self):
@@ -31,6 +51,31 @@ class Room:
             for y in [0, self.height]:
                 self.grid[y][x].wall = True
 
+    def bill_gates(self):
+        if self.kita is not None:
+            self.grid[0][38].set_next_room(self.kita)
+            self.grid[0][39].set_next_room(self.kita)
+            self.grid[0][40].set_next_room(self.kita)
+            self.grid[0][41].set_next_room(self.kita)
+
+        if self.higashi is not None:
+            self.grid[10][0].set_next_room(self.kita)
+            self.grid[11][0].set_next_room(self.kita)
+            self.grid[12][0].set_next_room(self.kita)
+            self.grid[13][0].set_next_room(self.kita)
+
+        if self.minami is not None:
+            self.grid[self.height - 1][38].set_next_room(self.kita)
+            self.grid[self.height - 1][39].set_next_room(self.kita)
+            self.grid[self.height - 1][40].set_next_room(self.kita)
+            self.grid[self.height - 1][41].set_next_room(self.kita)
+
+        if self.nishi is not None:
+            self.grid[10][self.width - 1].set_next_room(self.kita)
+            self.grid[11][self.width - 1].set_next_room(self.kita)
+            self.grid[12][self.width - 1].set_next_room(self.kita)
+            self.grid[13][self.width - 1].set_next_room(self.kita)
+
     def tonari(self):
         tonari = []
 
@@ -47,6 +92,9 @@ class Room:
             tonari.append(3)
 
         return tonari
+
+    def tonari_janai_janai(self, x, y):
+        return filter(lambda tile: tile is not None, [self.get_tile(x - 1, y), self.get_tile(x + 1, y), self.get_tile(), self.get_tile()])
 
     def tonari_janai(self, x, y, r):
         tiles = [self.grid[y][x]]
