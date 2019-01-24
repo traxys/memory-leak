@@ -16,6 +16,7 @@ class Bomb:
         if self.duration <= 0:
             self.explode()
 
+
 class Player:
     def __init__(self, x, y, current_level):
         self.level = 1
@@ -30,16 +31,17 @@ class Player:
     def get_hp_max(self):
         return (self.level * 100) + (self.hpbonus)
 
-    def move(self, direction, distance):
+    def move(self, direction):
         if direction == utils.Direction.Higashi:
-            self.x += distance
+            self.x += 1
         if direction == utils.Direction.Minami:
-            self.y += distance
+            self.y += 1
         if direction == utils.Direction.Nishi:
-            self.x -= distance
+            self.x -= 1
         if direction == utils.Direction.Kita:
-            self.y -= distance
+            self.y -= 1
 
     def put_bomb(self):
         bomb = Bomb(self.x, self.y, self.bomb_strength, self.bomb_duration, self.level)
+        
 
