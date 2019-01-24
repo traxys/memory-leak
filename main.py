@@ -4,8 +4,6 @@ import ai
 import curses
 import time
 
-def main():
-    hey = Enemy("hey", 1, 0, 0)
 
 def menu(scr, choices, title = None):
 	scr.nodelay(False)
@@ -18,7 +16,7 @@ def menu(scr, choices, title = None):
 			scr.addstr(start_l-1, (width-len(title))/2, title)
 		else:
 			start_l = (height-len(choices))/2
-		for l in xrange(len(choices)):
+		for l in range(len(choices)):
 			txt = choices[l]
 			start_c = (width-len(txt))/2
 			if l == selected:

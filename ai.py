@@ -1,20 +1,22 @@
-# import player
-import utils
+import player
+from utils import Direction
 
 class Enemy:
-    def __init__(self, name, range, attack, x_pos, y_pos, player):
+    def __init__(self, name, health, range, attack, x_pos, y_pos, player, map):
         self.name = name
         self.range = range
+        self.health = health
         self.attack = attack
         self.x = x_pos
         self.y = y_pos
-        self.direction = 0
+        self.direction = Direction.Minami
 
     def get_player_pos(self):
         return (self.player.x, self.player.y)
 
-    def routine(self):
-        if (self.x, self.y) != get_player_pos()
+    def update(self):
+        if (self.x, self.y) != get_player_pos():
+            pass
 
     def a_star_research(self, map, start, goal):
         frontier = PriorityQueue()
@@ -27,16 +29,14 @@ class Enemy:
         if not frontier.empty():
             current = frontier.get()
 
-            if current == goal:
-                break
-
-            for next in graph.neighbors(current):
-                new_cost = cost_so_far[current] + graph.cost(current, next)
-                if next not in cost_so_far or new_cost < cost_so_far[next]:
-                    cost_so_far[next] = new_cost
-                    priority = new_cost + heuristic(goal, next)
-                    frontier.put(next, priority)
-                    came_from[next] = current
+            if current != goal:
+                for next in map.neighbors(current):
+                    new_cost = cost_so_far[current] + map.cost(current, next)
+                    if next not in cost_so_far or new_cost < cost_so_far[next]:
+                        cost_so_far[next] = new_cost
+                        priority = new_cost + heuristic(goal, next)
+                        frontier.put(next, priority)
+                        came_from[next] = current
 
         return came_from, cost_so_far
 
