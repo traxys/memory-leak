@@ -1,4 +1,5 @@
 import utils
+import verygen
 
 class Bomb:
     def __init__(self, x, y, strength, duration, current_level):
@@ -9,7 +10,7 @@ class Bomb:
         self.level = current_level
 
     def explode(self):
-        pass
+        for x in self.level.current_level.tonari_janai(self.x, self.y)
 
     def update(self):
         self.duration -= 1
@@ -27,6 +28,7 @@ class Player:
         self.bomb_strength = 2
         self.bomb_duration = 10
         self.hp = 100
+        self.items = []
         
     def get_hp_max(self):
         return (self.level * 100) + (self.hpbonus)
@@ -40,6 +42,14 @@ class Player:
             self.x -= 1
         if direction == utils.Direction.Kita:
             self.y -= 1
+
+    def consume(self, index):
+        self.items[index].use(self)
+        self.items[index] = None
+    
+    def add_item(self, item):
+        if len(self.items) < 9:
+            self.items.append(item)
 
     def put_bomb(self):
         bomb = Bomb(self.x, self.y, self.bomb_strength, self.bomb_duration, self.level)
