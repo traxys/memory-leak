@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 
-import ai
 import curses
 import time
 
-def main():
-    hey = Enemy("hey", 1, 0, 0)
 
 def menu(scr, choices, title = None):
 	scr.nodelay(False)
@@ -14,13 +11,13 @@ def menu(scr, choices, title = None):
 		scr.clear()
 		height, width = scr.getmaxyx()
 		if title != None:
-			start_l = (height-len(choices)+1)/2
-			scr.addstr(start_l-1, (width-len(title))/2, title)
+			start_l = (height-len(choices)+1)//2
+			scr.addstr(start_l-1, (width-len(title))//2, title)
 		else:
-			start_l = (height-len(choices))/2
-		for l in xrange(len(choices)):
+			start_l = (height-len(choices))//2
+		for l in range(len(choices)):
 			txt = choices[l]
-			start_c = (width-len(txt))/2
+			start_c = (width-len(txt))//2
 			if l == selected:
 				scr.addstr(start_l+l, start_c, txt, curses.A_REVERSE)
 			else:
@@ -44,14 +41,22 @@ def main(scr):
         choice = menu(scr, ['play','quit'])
         if choice == 0:
             scr.clear()
-            scr.addstr(0,0,"there is no game you fucker !")
-            scr.refresh()
-            scr.nodelay(False)
-            k = scr.getkey()
-            scr.nodelay(True)
+            game(scr)
             scr.clear()
         else:
             break
 
+def bar(scr, l, c, width, value):
+    scr.addstr(l,c,'#'*int(width*value))
+
+def game(stdscr):
+    stdscr.clear()
+    stdscr.refresh()
+    height, width = stdscr.getmaxyx()
+    menu_scr = curses.newwin(height, 10, 0, 0)
+    game_scr = curses.newwin(height, width-10, 0, 10)
+    while True:
+        bar(menu_scr, 0, 0, 10, 1)
+        menu_scr.refresh()
 
 curses.wrapper(main)
