@@ -2,6 +2,7 @@
 
 import curses
 import time
+import verygen
 
 
 def menu(scr, choices, title = None):
@@ -67,6 +68,8 @@ def game(stdscr):
         bar(menu_scr, 0, 0, 10, 1)
         menu_scr.refresh()
         update(game_scr, [])
+        #k = game_scr.getkey()
+        #game_scr.addstr(0,0,k)
 
 
 curses.wrapper(main)
