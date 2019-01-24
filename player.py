@@ -25,8 +25,9 @@ class Player:
         self.level = current_level
         self.bomb_strength = 2
         self.bomb_duration = 10
+        self.hp = 100
         
-    def get_hp(self):
+    def get_hp_max(self):
         return (self.level * 100) + (self.hpbonus)
 
     def move(self, direction, distance):
