@@ -1,13 +1,11 @@
-<<<<<<< HEAD
 #!/usr/bin/env python3
 
 import ai
+import curses
+import time
 
 def main():
     hey = Enemy("hey", 1, 0, 0)
-=======
-import curses,time
->>>>>>> 24d868cb8d65d038bd6294efb7f48a0d2cadb8f3
 
 def menu(scr, choices, title = None):
 	scr.nodelay(False)

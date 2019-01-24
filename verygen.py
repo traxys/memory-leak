@@ -46,6 +46,8 @@ class Room:
         if self.nishi is not None:
             tonari.append(self.nishi)
 
+        return tonari
+
 class Level:
     def __init__(self):
         nb_rooms = randint(4, 10)
@@ -53,17 +55,16 @@ class Level:
         self.rooms = []
 
         for i in range(nb_rooms):
-            direction = randint(0, 3)
+            while:
+                room = choice(self.rooms)
 
-            room = choice(self.rooms)
+                new_room = Room()
 
-            new_room = Room()
-
-            if direction == 0:
-                room.kita = new_room
-            elif direction == 1:
-                pass
-            elif direction == 2:
-                pass
-            else:
-                pass
+                if direction == 0:
+                    room.kita = new_room
+                elif direction == 1:
+                    pass
+                elif direction == 2:
+                    pass
+                else:
+                    pass
