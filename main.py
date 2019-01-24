@@ -4,8 +4,6 @@ import ai
 import curses
 import time
 
-def main():
-    hey = Enemy("hey", 1, 0, 0)
 
 def menu(scr, choices, title = None):
 	scr.nodelay(False)
