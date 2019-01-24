@@ -49,8 +49,21 @@ class Room:
         return tonari
 
     def tonari_janai(self, x, y, r):
-        for d in range(0, r):   
-            pass
+        tiles = [self.grid[y][x]]
+
+        for o in range(1, r):
+            tiles.append(self.get_tile(x - 1, y - o), self.get_tile(x, y - o), self.get_tile(x + 1, y - o))
+            tiles.append(self.get_tile(x - 1, y + o), self.get_tile(x, y + o), self.get_tile(x + 1, y + o))
+            tiles.append(self.get_tile(x - o, y - 1), self.get_tile(x - o, y), self.get_tile(x - o, y + 1))
+            tiles.append(self.get_tile(x + o, y - 1), self.get_tile(x + o, y), self.get_tile(x + o, y + 1))
+
+        return filter(lambda tile: tile is not None, set(tiles))
+
+    def get_tile(self, x, y):
+        if x >= 0 and x < self.width and y >= 0 and y < self.height:
+            return self.grid[y][x]
+
+        return None
 
 class Level:
     def __init__(self):
