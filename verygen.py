@@ -93,22 +93,22 @@ class Room:
             self.grid[0][41].set_next_room(self.kita)
 
         if self.higashi is not None:
-            self.grid[10][0].set_next_room(self.kita)
-            self.grid[11][0].set_next_room(self.kita)
-            self.grid[12][0].set_next_room(self.kita)
-            self.grid[13][0].set_next_room(self.kita)
+            self.grid[10][0].set_next_room(self.higashi)
+            self.grid[11][0].set_next_room(self.higashi)
+            self.grid[12][0].set_next_room(self.higashi)
+            self.grid[13][0].set_next_room(self.higashi)
 
         if self.minami is not None:
-            self.grid[self.height - 1][38].set_next_room(self.kita)
-            self.grid[self.height - 1][39].set_next_room(self.kita)
-            self.grid[self.height - 1][40].set_next_room(self.kita)
-            self.grid[self.height - 1][41].set_next_room(self.kita)
+            self.grid[self.height - 1][38].set_next_room(self.minami)
+            self.grid[self.height - 1][39].set_next_room(self.minami)
+            self.grid[self.height - 1][40].set_next_room(self.minami)
+            self.grid[self.height - 1][41].set_next_room(self.minami)
 
         if self.nishi is not None:
-            self.grid[10][self.width - 1].set_next_room(self.kita)
-            self.grid[11][self.width - 1].set_next_room(self.kita)
-            self.grid[12][self.width - 1].set_next_room(self.kita)
-            self.grid[13][self.width - 1].set_next_room(self.kita)
+            self.grid[10][self.width - 1].set_next_room(self.nishi)
+            self.grid[11][self.width - 1].set_next_room(self.nishi)
+            self.grid[12][self.width - 1].set_next_room(self.nishi)
+            self.grid[13][self.width - 1].set_next_room(self.nishi)
 
     def tonari(self):
         tonari = []
