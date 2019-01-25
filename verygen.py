@@ -63,6 +63,7 @@ class Room:
 
     def generate(self):
         self.build_walls()
+        self.bill_gates()
 
     def build_walls(self):
         for y in range(self.height):
