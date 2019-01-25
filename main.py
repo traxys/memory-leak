@@ -104,6 +104,8 @@ def game(stdscr):
             protagonist.move(utils.Direction.Nishi)
         elif k != '':
             menu_scr.addstr(1,0,k)
+        for enemy in enemies:
+            enemy.update()
         menu_scr.refresh()
         game_scr.refresh()
         time.sleep(cut(0.05+loop_start-time.time()))
