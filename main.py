@@ -2,8 +2,9 @@
 
 import curses
 import time
-import verygen
+import verygen, player
 
+menu_width = 24
 
 def menu(scr, choices, title = None):
     scr.nodelay(False)
@@ -62,14 +63,16 @@ def game(stdscr):
     stdscr.clear()
     stdscr.refresh()
     height, width = stdscr.getmaxyx()
-    menu_scr = curses.newwin(height, 10, 0, 0)
-    game_scr = curses.newwin(height, width-10, 0, 10)
+    menu_scr = curses.newwin(height, menu_width, 0, 0)
+    game_scr = curses.newwin(height, width-menu_width-1, 0, menu_width+1)
     game_scr.nodelay(True)
     level = verygen.Level()
     level.generate()
+    protagonist = player.Player(level.main_room)
+    level.spawn_player(protagonist)
     while True:
         #update menu
-        bar(menu_scr, 0, 0, 10, 1)
+        bar(menu_scr, 0, 0, menu_width, 1)
         menu_scr.refresh()
         update(game_scr, level.main_room)
         k = ''
