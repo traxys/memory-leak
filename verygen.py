@@ -67,11 +67,11 @@ class Room:
     def build_walls(self):
         for y in range(self.height):
             for x in [0, self.width - 1]:
-                self.grid[y][x].wall = True
+                self.grid[y][x].type = TileType.WALL
 
         for x in range(self.width):
             for y in [0, self.height - 1]:
-                self.grid[y][x].wall = True
+                self.grid[y][x].wall = TileType.WALL
 
     def bill_gates(self):
         if self.kita is not None:
