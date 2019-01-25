@@ -53,6 +53,7 @@ class Player:
         if self.room.grid[self.y][self.x].is_a_gate():
             x = self.room.grid[self.y][self.x].next_x
             y = self.room.grid[self.y][self.x].next_y
+            self.room.grid[self.y][self.x].set_entity(None)
             self.room = self.room.grid[self.y][self.x].next_room
             self.x = x
             self.y = y
