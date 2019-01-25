@@ -1,6 +1,8 @@
 from random import randint, choice
 from enum import Enum
 
+# this is a comment
+
 class TileType(Enum):
     EMPTY = 0
     WALL = 1
