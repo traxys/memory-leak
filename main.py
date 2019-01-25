@@ -88,6 +88,12 @@ def game(stdscr):
                 break
         if k == 'A':
             protagonist.move(utils.Direction.Kita)
+        if k == 'B':
+            protagonist.move(utils.Direction.Minami)
+        if k == 'C':
+            protagonist.move(utils.Direction.Higashi)
+        if k == 'D':
+            protagonist.move(utils.Direction.Nishi)
         elif k != '':
             menu_scr.addstr(1,0,k)
         menu_scr.refresh()
