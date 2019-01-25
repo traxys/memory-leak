@@ -154,7 +154,7 @@ class Room:
         player.y = self.height // 2
 
     def spawn_enemy(self, enemy):
-        self.grid[2][2] = enemy
+        self.grid[2][2].set_entity(enemy)
 
 class Level:
     def __init__(self):
