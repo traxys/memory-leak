@@ -60,7 +60,7 @@ def update(scr, room):
                 letter = 'w'
             elif tile.has_entity():
                 if isinstance(tile.entity, player.Player):
-                    letter = 'o'
+                    letter = 'ô'
                 else:
                     letter = 'i'
             scr.addstr(l, c, letter)
