@@ -49,11 +49,11 @@ class Tile:
         self.next_room = next_room
     
         if self.x == 0 or self.x == self.room.width - 1:
-            self.next_x = self.room.width - 1 if self.x == 0 else 0
+            self.next_x = self.room.width - 2 if self.x == 0 else 1
             self.next_y = self.y
         else:
             self.next_x = self.x
-            self.next_y = self.room.height - 1 if self.y == 0 else 0
+            self.next_y = self.room.height - 2 if self.y == 0 else 1
 
         self.type = TileType.GATE
 
