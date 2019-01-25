@@ -69,6 +69,7 @@ cut = lambda x: x*(x>0)
 
 debug_buffer = []
 def debug_print(line):
+    global debug_buffer
     debug_buffer.append(line)
 
 def game(stdscr):
