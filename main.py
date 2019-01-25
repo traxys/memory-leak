@@ -50,11 +50,13 @@ def main(scr):
 def bar(scr, l, c, width, value):
     scr.addstr(l,c,'#'*int(width*value))
 
-def update(scr, objects):
+def update(scr, room):
     scr.clear()
-    for obj in objects:
-        for i, s in obj.sprite:
-            scr.addstr(obj.y-height+i+1, obj.x-width/2, s)
+    for l, line in enumerate(room.grid):
+        for c, tile in enumerate(line):
+            if tile.is_a_wall():
+                scr.addstr(l, c, "w")
+    scr.refresh()
 
 def game(stdscr):
     stdscr.clear()
@@ -63,19 +65,19 @@ def game(stdscr):
     menu_scr = curses.newwin(height, 10, 0, 0)
     game_scr = curses.newwin(height, width-10, 0, 10)
     game_scr.nodelay(True)
+    level = verygen.Level()
+    level.generate()
     while True:
         #update menu
         bar(menu_scr, 0, 0, 10, 1)
         menu_scr.refresh()
-        update(game_scr, [])
+        update(game_scr, level.main_room)
         k = ''
         while True:
             try:
                 k = game_scr.getkey()
             except curses.error:
                 break
-        game_scr.addstr(0,0,str(k))
-        game_scr.refresh()
         time.sleep(0.05)
 
 
