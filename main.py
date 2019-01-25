@@ -2,7 +2,7 @@
 
 import curses
 import time
-import verygen, player, utils
+import verygen, player, utils, ai
 
 menu_width = 24
 
@@ -71,6 +71,9 @@ def game(stdscr):
     height, width = stdscr.getmaxyx()
     menu_scr = curses.newwin(height, menu_width, 0, 0)
     game_scr = curses.newwin(height, width-menu_width-1, 0, menu_width+1)
+    for l in range(height):
+        stdscr.addstr(l,menu_width, '|')
+    stdscr.refresh()
     game_scr.nodelay(True)
     level = verygen.Level()
     level.generate()

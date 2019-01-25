@@ -32,8 +32,8 @@ class Enemy:
                 self.move(Direction.Higashi)
             else:
                 randomu = randint(0, 1)
-                if randomu == 0:
-                    self.move(Direction.Kita)
+            if randomu == 0:
+                self.move(Direction.Kita)
 
         else:
             if not room.grid[self.y][self.x-1].is_a_wall():
@@ -45,17 +45,17 @@ class Enemy:
         if self.player.y - self.y > 0:
             if not room.grid[self.y+1][self.x].is_a_wall():
                 self.move(Direction.Minami)
-                else:
-                    randomu = randint(0, 1)
-                    if randomu == 0:
-                        self.move(Direction.Higashi)
+            else:
+                randomu = randint(0, 1)
+                if randomu == 0:
+                    self.move(Direction.Higashi)
         else:
             if not room.grid[self.y-1][self.x].is_a_wall():
                 self.move(Direction.Kita)
-                else:
-                    randomu = randint(0, 1)
-                    if randomu == 0:
-                        self.move(Direction.Nishi)
+            else:
+                randomu = randint(0, 1)
+                if randomu == 0:
+                    self.move(Direction.Nishi)
 
 
     def heuristic(self, next, goal):
