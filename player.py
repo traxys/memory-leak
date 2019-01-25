@@ -27,6 +27,8 @@ class Player:
         self.level = current_level
         self.bomb_strength = 2
         self.bomb_duration = 10
+        self.x = 0
+        self.y = 0
         self.hp = 100
         self.items = []
         self.direction = utils.Direction.Kita
@@ -48,6 +50,13 @@ class Player:
             self.level.grid[self.x][self.y] = None
             self.y -= 1
         self.level.grid[self.x][self.y] = self
+        if self.level.grid[self.x][self.y].is_a_gate():
+            x = self.level.grid[self.x][self.y].next_x
+            y = self.level.grid[self.x][self.y].next_y
+            self.level = self.level.grid[self.x][self.y].next_room
+            self.x = x
+            self.y = y
+
 
     def consume(self, index):
         self.items[index].use(self)
