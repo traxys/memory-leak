@@ -4,9 +4,9 @@ from enum import Enum
 # this is a comment
 
 class TileType(Enum):
-    EMPTY = 0
-    WALL = 1
-    GATE = 2
+    EMPTY = 1
+    WALL = 2
+    GATE = 3
 
 class Tile:
     def __init__(self):
@@ -59,19 +59,20 @@ class Room:
         self.height = 24
         self.width = 80
 
-        self.grid = [x[:] for x in [[Tile()] * self.width] * self.height]
+        self.grid = [[Tile() for x in range(self.width)] for y in range(self.height)]
 
     def generate(self):
         self.build_walls()
+        self.bill_gates()
 
     def build_walls(self):
         for y in range(self.height):
             for x in [0, self.width - 1]:
-                self.grid[y][x].wall = True
+                self.grid[y][x].type = TileType.WALL
 
         for x in range(self.width):
             for y in [0, self.height - 1]:
-                self.grid[y][x].wall = True
+                self.grid[y][x].type = TileType.WALL
 
     def bill_gates(self):
         if self.kita is not None:
