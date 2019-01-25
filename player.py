@@ -50,7 +50,7 @@ class Player:
             self.room.grid[self.y][self.x] = None
             self.y -= 1
         self.room.grid[self.y][self.x] = self
-        if self.room.grid[self.x][self.y].is_a_gate():
+        if self.room.grid[self.y][self.x].is_a_gate():
             x = self.room.grid[self.y][self.x].next_x
             y = self.room.grid[self.y][self.x].next_y
             self.room = self.room.grid[self.y][self.x].next_room
