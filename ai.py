@@ -19,11 +19,15 @@ class Enemy:
 
     def update(self):
         if (self.x, self.y) != get_player_pos():
-            a_star_research(self.room, (self.x, self.y), (self.player.x, self.player.y))
+            pureya_ni_iku()
+            pureya_wo_naguru()
+            if self.room.grid[self.x][self.y].has_item():
+                self.add_item(self.room.grid[self.x][self.y].item)
+                self.room.grid[self.x][self.y].item = None
 
-    def pureya_ni_iku(self, start, goal):
+    def pureya_ni_iku(self):
         if self.player.x - self.x > 0:
-            if not room.grid[self.x+1, self.y].is_a_wall():
+            if not room.grid[self.x+1][self.y].is_a_wall():
                 self.move(Direction.Higashi)
             else:
                 randomu = randint(0, 1)
@@ -31,21 +35,21 @@ class Enemy:
                     self.move(Direction.Kita)
 
         else:
-            if not room.grid[self.x-1, self.y].is_a_wall():
+            if not room.grid[self.x-1][self.y].is_a_wall():
                 self.move(Direction.Nishi)
             else:
                 randomu = randint(0, 1)
                 if randomu == 0:
                     self.move(Direction.Minami)
         if self.player.y - self.y > 0:
-            if not room.grid[self.x, self.y+1].is_a_wall():
+            if not room.grid[self.x][self.y+1].is_a_wall():
                 self.move(Direction.Minami)
                 else:
                     randomu = randint(0, 1)
                     if randomu == 0:
                         self.move(Direction.Higashi)
         else:
-            if not room.grid[self.x, self.y-1].is_a_wall():
+            if not room.grid[self.x][self.y-1].is_a_wall():
                 self.move(Direction.Kita)
                 else:
                     randomu = randint(0, 1)
@@ -67,6 +71,7 @@ class Enemy:
         self.items.append(item)
 
     def move(self, direction):
+        self.room.grid[self.x][self.y].entity = None
         if direction == Direction.Kita:
             self.y -= 1
         else if direction == Direction.Nishi:
@@ -75,3 +80,4 @@ class Enemy:
             self.x += 1
         else:
             self.y += 1
+        self.map.grid[self.x][self.y].entity = self
