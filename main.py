@@ -55,9 +55,15 @@ def update(scr, room):
     scr.clear()
     for l, line in enumerate(room.grid):
         for c, tile in enumerate(line):
+            letter = ''
             if tile.is_a_wall():
-                scr.addstr(l, c, "w")
-    scr.refresh()
+                letter = 'w'
+            elif tile.has_entity():
+                if isinstance(tile.entity, player.Player):
+                    letter = 'o'
+                else:
+                    letter = 'i'
+            scr.addstr(l, c, letter)
 
 def game(stdscr):
     stdscr.clear()
@@ -73,7 +79,6 @@ def game(stdscr):
     while True:
         #update menu
         bar(menu_scr, 0, 0, menu_width, 1)
-        menu_scr.refresh()
         update(game_scr, level.main_room)
         k = ''
         while True:
@@ -83,6 +88,8 @@ def game(stdscr):
                 break
         if k != '':
             return
+        menu_scr.refresh()
+        game_scr.refresh()
         time.sleep(0.05)
 
 
