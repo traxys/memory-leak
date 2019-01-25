@@ -49,7 +49,7 @@ class Player:
         if direction == utils.Direction.Kita and not self.room.grid[self.y][self.x].is_a_wall():
             self.room.grid[self.y][self.x].set_entity(None)
             self.y -= 1
-        self.room.grid[self.y][self.x] = self
+        self.room.grid[self.y][self.x].set_entity(self)
         if self.room.grid[self.y][self.x].is_a_gate():
             x = self.room.grid[self.y][self.x].next_x
             y = self.room.grid[self.y][self.x].next_y
