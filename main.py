@@ -65,6 +65,8 @@ def update(scr, room):
                     letter = 'e'
             scr.addstr(l, c, letter)
 
+cut = lambda x: x*(x>0)
+
 def game(stdscr):
     stdscr.clear()
     stdscr.refresh()
@@ -79,6 +81,7 @@ def game(stdscr):
     level.generate()
     protagonist = player.Player(level.main_room)
     level.spawn_player(protagonist)
+    loop_start = time.time()
     while True:
         #update menu
         bar(menu_scr, 0, 0, menu_width, 1)
@@ -101,7 +104,8 @@ def game(stdscr):
             menu_scr.addstr(1,0,k)
         menu_scr.refresh()
         game_scr.refresh()
-        time.sleep(0.05)
+        time.sleep(cut(0.05+loop_start-time.time()))
+        loop_start = time.time()
 
 
 curses.wrapper(main)
