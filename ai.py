@@ -1,8 +1,9 @@
 import player
 from utils import Direction
+from random import randint
 
 class Enemy:
-    def __init__(self, name, health, range, attack, x_pos, y_pos, player, map, items = []):
+    def __init__(self, player, room, name = "heeeey", health = 100, range = 1, attack = 1, x_pos = 0, y_pos = 0, items = []):
         self.name = name
         self.range = range
         self.health = health
@@ -10,6 +11,7 @@ class Enemy:
         self.x = x_pos
         self.y = y_pos
         self.direction = Direction.Minami
+        self.room = room
         self.items = items
 
     def get_player_pos(self):
@@ -17,17 +19,38 @@ class Enemy:
 
     def update(self):
         if (self.x, self.y) != get_player_pos():
-            a_star_research(self.map, (self.x, self.y), (self.player.x, self.player.y))
+            a_star_research(self.room, (self.x, self.y), (self.player.x, self.player.y))
 
-    def pureya_ni_iku(self, map, start, goal):
+    def pureya_ni_iku(self, start, goal):
         if self.player.x - self.x > 0:
-            self.move(Direction.Higashi)
+            if not room.grid[self.x+1, self.y].is_a_wall():
+                self.move(Direction.Higashi)
+            else:
+                randomu = randint(0, 1)
+                if randomu == 0:
+                    self.move(Direction.Kita)
+
         else:
-            self.move(Direction.Nishi)
+            if not room.grid[self.x-1, self.y].is_a_wall():
+                self.move(Direction.Nishi)
+            else:
+                randomu = randint(0, 1)
+                if randomu == 0:
+                    self.move(Direction.Minami)
         if self.player.y - self.y > 0:
-            self.move(Direction.Minami)
+            if not room.grid[self.x, self.y+1].is_a_wall():
+                self.move(Direction.Minami)
+                else:
+                    randomu = randint(0, 1)
+                    if randomu == 0:
+                        self.move(Direction.Higashi)
         else:
-            self.move(Direction.Kita)
+            if not room.grid[self.x, self.y-1].is_a_wall():
+                self.move(Direction.Kita)
+                else:
+                    randomu = randint(0, 1)
+                    if randomu == 0:
+                        self.move(Direction.Nishi)
 
 
     def heuristic(self, next, goal):

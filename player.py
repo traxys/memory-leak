@@ -21,11 +21,9 @@ class Bomb:
 
 
 class Player:
-    def __init__(self, x, y, current_level):
+    def __init__(self,current_level):
         self.level = 1
         self.hpbonus = 0
-        self.x = x
-        self.y = y
         self.level = current_level
         self.bomb_strength = 2
         self.bomb_duration = 10
@@ -38,13 +36,18 @@ class Player:
 
     def move(self, direction):
         if direction == utils.Direction.Higashi and not self.level.is_a_wall(self.x, self.y):
+            self.level.grid[self.x][self.y] = None
             self.x += 1
         if direction == utils.Direction.Minami and not self.level.is_a_wall(self.x, self.y):
+            self.level.grid[self.x][self.y] = None
             self.y += 1
         if direction == utils.Direction.Nishi and not self.level.is_a_wall(self.x, self.y):
+            self.level.grid[self.x][self.y] = None
             self.x -= 1
         if direction == utils.Direction.Kita and not self.level.is_a_wall(self.x, self.y):
+            self.level.grid[self.x][self.y] = None
             self.y -= 1
+        self.level.grid[self.x][self.y] = self
 
     def consume(self, index):
         self.items[index].use(self)
