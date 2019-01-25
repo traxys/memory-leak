@@ -37,16 +37,16 @@ class Player:
         return (self.room * 100) + (self.hpbonus)
 
     def move(self, direction):
-        if direction == utils.Direction.Higashi and not self.room.is_a_wall(self.x, self.y):
+        if direction == utils.Direction.Higashi and not self.room.grid[self.x][self.y].is_a_wall():
             self.room.grid[self.x][self.y] = None
             self.x += 1
-        if direction == utils.Direction.Minami and not self.room.is_a_wall(self.x, self.y):
+        if direction == utils.Direction.Minami and not self.room.grid[self.x][self.y].is_a_wall():
             self.room.grid[self.x][self.y] = None
             self.y += 1
-        if direction == utils.Direction.Nishi and not self.room.is_a_wall(self.x, self.y):
+        if direction == utils.Direction.Nishi and not self.room.grid[self.x][self.y].is_a_wall():
             self.room.grid[self.x][self.y] = None
             self.x -= 1
-        if direction == utils.Direction.Kita and not self.room.is_a_wall(self.x, self.y):
+        if direction == utils.Direction.Kita and not self.room.grid[self.x][self.y].is_a_wall():
             self.room.grid[self.x][self.y] = None
             self.y -= 1
         self.room.grid[self.x][self.y] = self

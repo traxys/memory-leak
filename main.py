@@ -2,7 +2,7 @@
 
 import curses
 import time
-import verygen, player
+import verygen, player, utils
 
 menu_width = 24
 
@@ -86,8 +86,16 @@ def game(stdscr):
                 k = game_scr.getkey()
             except curses.error:
                 break
-        if k != '':
-            return
+        if k == 'A':
+            protagonist.move(utils.Direction.Kita)
+        if k == 'B':
+            protagonist.move(utils.Direction.Minami)
+        if k == 'C':
+            protagonist.move(utils.Direction.Higashi)
+        if k == 'D':
+            protagonist.move(utils.Direction.Nishi)
+        elif k != '':
+            menu_scr.addstr(1,0,k)
         menu_scr.refresh()
         game_scr.refresh()
         time.sleep(0.05)
