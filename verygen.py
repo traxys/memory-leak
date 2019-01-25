@@ -37,6 +37,9 @@ class Tile:
     def get_entity(self):
         return self.entity
 
+    def is_obstructed(self):
+        return self.is_a_wall() or self.has_entity()
+
     def is_empty(self):
         return self.type == TileType.EMPTY
 
