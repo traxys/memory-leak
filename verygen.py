@@ -10,6 +10,26 @@ class Tile:
     def __init__(self):
         self.type = TileType.EMPTY
         self.next_room = None
+        self.item = None
+        self.entity = None
+
+    def set_item(self, item):
+        self.item = item
+
+    def set_entity(self, entity):
+        self.entity = entity
+
+    def has_item(self):
+        return self.item is not None
+
+    def get_item(self):
+        return self.item
+
+    def has_entity(self):
+        return self.entity is not None
+
+    def get_entity(self):
+        return self.entity
 
     def is_empty(self):
         return self.type == TileType.EMPTY
@@ -113,16 +133,23 @@ class Room:
 
         return None
 
+    def spawn_player(self, player):
+        self.grid[self.height // 2][self.width // 2].set_entity(player)
+
 class Level:
     def __init__(self):
         self.nb_rooms = randint(4, 10)
 
-        self.rooms = []
+        self.main_room = Room()
+
+        self.rooms = [self.main_room]
 
     def generate(self):
         for i in range(self.nb_rooms):
             new_room = Room()
             
+            new_room.spawn_player()
+
             while 42:
                 room = choice(self.rooms)
                 tonari = room.tonari()
@@ -141,4 +168,8 @@ class Level:
                 else:
                     room.nishi = new_room
 
-                break 
+                break
+
+    def spawn_player(self, player):
+        self.main_room.spawn_player(player)
+        
