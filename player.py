@@ -46,7 +46,7 @@ class Player:
         if direction == utils.Direction.Nishi and not self.room.grid[self.x][self.y].is_a_wall():
             self.room.grid[self.x][self.y] = None
             self.x -= 1
-        if direction == utils.Direction.Kita and not self.room.grid[self.x][self.y].is_a_wall()
+        if direction == utils.Direction.Kita and not self.room.grid[self.x][self.y].is_a_wall():
             self.room.grid[self.x][self.y] = None
             self.y -= 1
         self.room.grid[self.x][self.y] = self
