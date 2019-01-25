@@ -75,9 +75,9 @@ class Enemy:
         self.room.grid[self.y][self.x].entity = None
         if direction == Direction.Kita:
             self.y -= 1
-        else if direction == Direction.Nishi:
+        elif direction == Direction.Nishi:
             self.x -= 1
-        else if direction == Direction.Minami:
+        elif direction == Direction.Minami:
             self.x += 1
         else:
             self.y += 1
