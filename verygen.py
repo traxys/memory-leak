@@ -172,6 +172,9 @@ class Level:
 
                 break
 
+        for room in self.rooms:
+            room.generate()
+
     def spawn_player(self, player):
         self.main_room.spawn_player(player)
         
