@@ -150,8 +150,6 @@ class Level:
         for i in range(self.nb_rooms):
             new_room = Room()
             
-            new_room.spawn_player()
-
             while 42:
                 room = choice(self.rooms)
                 tonari = room.tonari()
