@@ -66,11 +66,11 @@ class Room:
 
     def build_walls(self):
         for y in range(self.height):
-            for x in [0, self.width]:
+            for x in [0, self.width - 1]:
                 self.grid[y][x].wall = True
 
         for x in range(self.width):
-            for y in [0, self.height]:
+            for y in [0, self.height - 1]:
                 self.grid[y][x].wall = True
 
     def bill_gates(self):
@@ -168,11 +168,12 @@ class Level:
                 else:
                     room.nishi = new_room
 
+                self.rooms.append(new_room)
+
                 break
 
         for room in self.rooms:
             room.generate()
 
     def spawn_player(self, player):
-        self.main_room.spawn_player(player)
-        
+        self.main_room.spawn_player(player) 
