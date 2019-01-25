@@ -5,6 +5,7 @@ from random import randint
 class Enemy:
     def __init__(self, player, room, name = "canary value", health = 100, range = 1, attack = 1, x_pos = 2, y_pos = 2, items = []):
         self.name = name
+        self.player = player
         self.range = range
         self.health = health
         self.attack = attack
