@@ -1,5 +1,6 @@
 from random import randint, choice
 from enum import Enum
+from ai import Enemy
 
 # this is a comment
 
@@ -151,6 +152,9 @@ class Room:
         self.grid[self.height // 2][self.width // 2].set_entity(player)
         player.x = self.width // 2
         player.y = self.height // 2
+
+    def spawn_enemy(self, enemy):
+        self.grid[2][2] = enemy
 
 class Level:
     def __init__(self):

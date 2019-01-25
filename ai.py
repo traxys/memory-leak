@@ -3,8 +3,7 @@ from utils import Direction
 from random import randint
 
 class Enemy:
-    def __init__(self, sprite, player, room, name = "canary value", health = 100, range = 1, attack = 1, x_pos = 0, y_pos = 0, items = []):
-        self.sprite = sprite
+    def __init__(self, player, room, name = "canary value", health = 100, range = 1, attack = 1, x_pos = 0, y_pos = 0, items = []):
         self.name = name
         self.range = range
         self.health = health
