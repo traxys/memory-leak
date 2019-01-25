@@ -44,6 +44,7 @@ class Tile:
 
     def set_next_room(self, next_room):
         self.next_room = next_room
+
         self.type = TileType.GATE
 
     def get_next_room(self):
