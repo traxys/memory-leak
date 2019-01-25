@@ -62,7 +62,7 @@ def update(scr, room):
                 if isinstance(tile.entity, player.Player):
                     letter = 'ô'
                 else:
-                    letter = 'i'
+                    letter = 'e'
             scr.addstr(l, c, letter)
 
 def game(stdscr):
@@ -79,7 +79,7 @@ def game(stdscr):
     while True:
         #update menu
         bar(menu_scr, 0, 0, menu_width, 1)
-        update(game_scr, level.main_room)
+        update(game_scr, protagonist.room)
         k = ''
         while True:
             try:
