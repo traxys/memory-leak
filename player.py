@@ -37,13 +37,13 @@ class Player:
         return (self.level * 100) + (self.hpbonus)
 
     def move(self, direction):
-        if direction == utils.Direction.Higashi:
+        if direction == utils.Direction.Higashi and not self.level.is_a_wall(self.x, self.y):
             self.x += 1
-        if direction == utils.Direction.Minami:
+        if direction == utils.Direction.Minami and not self.level.is_a_wall(self.x, self.y):
             self.y += 1
-        if direction == utils.Direction.Nishi:
+        if direction == utils.Direction.Nishi and not self.level.is_a_wall(self.x, self.y):
             self.x -= 1
-        if direction == utils.Direction.Kita:
+        if direction == utils.Direction.Kita and not self.level.is_a_wall(self.x, self.y):
             self.y -= 1
 
     def consume(self, index):
