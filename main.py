@@ -2,7 +2,7 @@
 
 import curses
 import time
-import verygen, player, utils
+import verygen, player, utils, ai
 
 menu_width = 24
 
