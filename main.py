@@ -67,6 +67,10 @@ def update(scr, room):
 
 cut = lambda x: x*(x>0)
 
+debug_buffer = []
+def debug_print(line):
+    debug_buffer.append(line)
+
 def game(stdscr):
     stdscr.clear()
     stdscr.refresh()
@@ -106,6 +110,9 @@ def game(stdscr):
             menu_scr.addstr(1,0,k)
         for enemy in enemies:
             enemy.update()
+        for l, line in enumerate(debug_buffer):
+            menu_scr.addstr(l+4,0,line)
+        debug_buffer = debug_buffer[-10:]
         menu_scr.refresh()
         game_scr.refresh()
         time.sleep(cut(0.05+loop_start-time.time()))
