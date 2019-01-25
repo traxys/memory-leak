@@ -19,27 +19,16 @@ class Enemy:
         if (self.x, self.y) != get_player_pos():
             a_star_research(self.map, (self.x, self.y), (self.player.x, self.player.y))
 
-    def a_star_research(self, map, start, goal):
-        open_set = PriorityQueue()
-        open_set.put(start, 0)
-        came_from = {}          # チキンナゲットが大好き！
-        closed_set = {}
-        came_from[start] = None
-        closed_set[start] = 0
+    def pureya_ni_iku(self, map, start, goal):
+        if self.player.x - self.x > 0:
+            self.move(Direction.Higashi)
+        else:
+            self.move(Direction.Nishi)
+        if self.player.y - self.y > 0:
+            self.move(Direction.Minami)
+        else:
+            self.move(Direction.Kita)
 
-        while not open_set.empty():
-            current = open_set.get()
-
-            if current != goal:
-                for next in map.tonari_janai_janai(current):
-                    new_cost = closed_set[current] + map.cost(current, next)
-                    if next not in closed_set or new_cost < closed_set[next]:
-                        closed_set[next] = new_cost
-                        priority = new_cost + heuristic(goal, next)
-                        open_set.put(next, priority)
-                        came_from[next] = current
-
-        return came_from, closed_set
 
     def heuristic(self, next, goal):
         return abs(goal.x - self.x) + abs(goal.y - next.y)
@@ -48,7 +37,7 @@ class Enemy:
         return abs(self.x - self.player.x) + abs(self.y - self.player.y)
 
     def pureya_wo_naguru(self):
-        if get_distance_from_player() <= self.range:
+        if pureya_ha_doko_ka() <= self.range:
             self.player.health -= self.attack
 
     def add_item(self, item):
