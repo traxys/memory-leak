@@ -81,6 +81,8 @@ def game(stdscr):
     level.generate()
     protagonist = player.Player(level.main_room)
     level.spawn_player(protagonist)
+    enemies = [ai.Enemy(protagonist, protagonist.room, x_pos=2, y_pos=3)]
+    protagonist.room.spawn_enemy(enemies[0])
     loop_start = time.time()
     while True:
         #update menu
