@@ -3,7 +3,7 @@ from utils import Direction
 from random import randint
 
 class Enemy:
-    def __init__(self, player, room, name = "canary value", health = 100, range = 1, attack = 1, x_pos = 0, y_pos = 0, items = []):
+    def __init__(self, player, room, name = "canary value", health = 100, range = 1, attack = 1, x_pos = 2, y_pos = 2, items = []):
         self.name = name
         self.range = range
         self.health = health
@@ -18,7 +18,7 @@ class Enemy:
         return (self.player.x, self.player.y)
 
     def update(self):
-        if (self.x, self.y) != get_player_pos():
+        if (self.x, self.y) != self.get_player_pos():
             pureya_ni_iku()
             pureya_wo_naguru()
             if self.room.grid[self.y][self.x].has_item():
