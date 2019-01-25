@@ -175,12 +175,16 @@ class Level:
 
                 if direction == 0:
                     room.kita = new_room
+                    new_room.minami = room
                 elif direction == 1:
                     room.higashi = new_room
+                    new_room.nishi = room
                 elif direction == 2:
                     room.minami = new_room
+                    new_room.kita = room
                 else:
                     room.nishi = new_room
+                    new_room.higashi = room
 
                 self.rooms.append(new_room)
 
