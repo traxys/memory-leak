@@ -138,6 +138,8 @@ class Room:
 
     def spawn_player(self, player):
         self.grid[self.height // 2][self.width // 2].set_entity(player)
+        player.x = self.width // 2
+        player.y = self.height // 2
 
 class Level:
     def __init__(self):
