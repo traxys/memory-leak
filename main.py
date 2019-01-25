@@ -65,12 +65,13 @@ def game(stdscr):
     menu_scr = curses.newwin(height, 10, 0, 0)
     game_scr = curses.newwin(height, width-10, 0, 10)
     game_scr.nodelay(True)
-    room = verygen.Room()
+    level = verygen.Level()
+    level.generate()
     while True:
         #update menu
         bar(menu_scr, 0, 0, 10, 1)
         menu_scr.refresh()
-        update(game_scr, room)
+        update(game_scr, level.main_room)
         k = ''
         while True:
             try:
