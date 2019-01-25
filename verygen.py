@@ -9,11 +9,12 @@ class TileType(Enum):
     GATE = 3
 
 class Tile:
-    def __init__(self, x, y):
+    def __init__(self, room, x, y):
         self.type = TileType.EMPTY
         self.next_room = None
         self.item = None
         self.entity = None
+        self.room = room
         self.x = x
         self.y = y
 
@@ -47,12 +48,12 @@ class Tile:
     def set_next_room(self, next_room):
         self.next_room = next_room
     
-        if self.x == 0 or self.x == self.width - 1:
-            self.next_x = self.width - 1 if self.x == 0 else 0
+        if self.x == 0 or self.x == self.room.width - 1:
+            self.next_x = self.room.width - 1 if self.x == 0 else 0
             self.next_y = self.y
         else:
             self.next_x = self.x
-            self.next_y = self.height - 1 if self.y == 0 else 0
+            self.next_y = self.room.height - 1 if self.y == 0 else 0
 
         self.type = TileType.GATE
 
@@ -69,7 +70,7 @@ class Room:
         self.height = 24
         self.width = 80
 
-        self.grid = [[Tile(x, y) for x in range(self.width)] for y in range(self.height)]
+        self.grid = [[Tile(self, x, y) for x in range(self.width)] for y in range(self.height)]
 
     def generate(self):
         self.build_walls()
