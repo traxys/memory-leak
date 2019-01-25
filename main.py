@@ -78,6 +78,8 @@ def game(stdscr):
                 k = game_scr.getkey()
             except curses.error:
                 break
+        if k != '':
+            return
         time.sleep(0.05)
 
 
