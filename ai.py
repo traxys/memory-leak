@@ -53,3 +53,13 @@ class Enemy:
 
     def add_item(self, item):
         self.items.append(item)
+
+    def move(self, direction):
+        if direction == Direction.Kita:
+            self.y -= 1
+        else if direction == Direction.Nishi:
+            self.x -= 1
+        else if direction == Direction.Minami:
+            self.x += 1
+        else:
+            self.y += 1
