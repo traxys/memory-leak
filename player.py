@@ -21,7 +21,7 @@ class Bomb:
 
 
 class Player:
-    def __init__(self,current_level):
+    def __init__(self, current_level):
         self.room = 1
         self.hpbonus = 0
         self.room = current_level
@@ -57,6 +57,7 @@ class Player:
             self.room = self.room.grid[self.y][self.x].next_room
             self.x = x
             self.y = y
+            self.room.grid[self.y][self.x].set_entity(self)
 
 
     def consume(self, index):
